@@ -8,7 +8,7 @@ class Fib extends Component {
         index: ''
     };
 
-    componentDidMoint() {
+    componentDidMount() {
         this.fetchValues();
         this.fetchIndexes();
     }
@@ -31,7 +31,7 @@ class Fib extends Component {
         await axios.post('/api/values', {
             index: this.state.index
         });
-        this.setState({ index: ' '});
+        this.setState({ index: '' });
     };
 
     renderSeenIndexes() {
@@ -45,15 +45,16 @@ class Fib extends Component {
                 <div key={key}>
                     For index {key} I calculated {this.state.values[key]}
                 </div>
-            )
+            );
         }
+        return entries;
     }
 
     render() {
         return (
           <div>
               <form onSubmit={this.handleSubmit}>
-                  <label>Enter your index: </label>
+                  <label>Enter your index:</label>
                   <input 
                     value={this.state.index}
                     onChange={event => this.setState({ index: event.target.value })}
@@ -64,7 +65,7 @@ class Fib extends Component {
                 <h3>Indexes I have seen:</h3>
                 {this.renderSeenIndexes()}
 
-                <h3>Calculated values:</h3>
+                <h3>Calculated Values:</h3>
                 {this.renderValues()}
 
           </div>  
