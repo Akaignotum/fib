@@ -1,0 +1,22 @@
+sudo: required
+services:
+  - docker
+
+before_install:
+  - docker build -t unowen/react-test -f ./client/Dockerfile.dev ./client
+
+script:
+  - docker run -e CI=true unowen/react-test npm test
+
+after_success:
+  - docker build -t akaunowen/multic-client ./client
+  - docker build -t akaunowen/multic-nginx ./nginx
+  - docker build -t akaunowen/multic-server ./server
+  - docker build -t akaunowen/multic-worker ./worker
+  # v- Login to the docker CLI, variables defined in TRAVIS-CI
+  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
+  #Take those images and push them to docker hub
+  - docker push akaunowen/multic-client
+  - docker push akaunowen/multic-nginx
+  - docker push akaunowen/multic-server
+  - docker push akaunowen/multic-worker
