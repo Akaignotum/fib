@@ -20,3 +20,21 @@ after_success:
   - docker push akaunowen/multic-nginx
   - docker push akaunowen/multic-server
   - docker push akaunowen/multic-worker
+
+#AWS Elastic Beanstalk config
+
+# deploy:
+#     provider: elasticbeanstalk
+#     region: <yourRegion_SubDomainFromYourEB_URL>
+#     app: multic-docker
+#     env: MulticDocker-env
+#     bucket_name: "elasticbeanstalk-us-west-2-321132321(AWS services S3 and find the bucket you are currently in)"
+#     bucket_path: docker-multi
+#     on:
+#       branch: master
+#     access_key_id: 
+#       secure: $AWS_ACCESS_KEY
+#     secret_access_key: 
+#       secure: $AWS_SECRET_KEY
+
+#/AWS Elastic Beanstalk config
