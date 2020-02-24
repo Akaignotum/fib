@@ -62,6 +62,8 @@ class Fib extends Component {
                   <button>Submit</button>
               </form>
 
+                <h3>refresh after entering new value</h3>
+
                 <h3>Indexes I have seen:</h3>
                 {this.renderSeenIndexes()}
 
